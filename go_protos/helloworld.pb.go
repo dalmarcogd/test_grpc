@@ -4,12 +4,12 @@
 package go_protos
 
 import (
+	context "context"
 	fmt "fmt"
-	context "go_protoscontext"
-	proto "go_protosgithub.com/golang/protobuf/proto"
-	grpc "go_protosgoogle.golang.org/grpc"
-	codes "go_protosgoogle.golang.org/grpc/codes"
-	status "go_protosgoogle.golang.org/grpc/status"
+	proto "github.com/golang/protobuf/proto"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
