@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/dalmarcogd/test_grpc/go_protos"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 	"net"
-	grpc "google.golang.org/grpc"
 )
 
 const (
@@ -23,8 +24,8 @@ func main() {
 		fmt.Printf("failed to listen: %v\n", err)
 		return
 	}
-	grpcServer := NewServer()
-	pb.RegisterHelloWorldServer(grpcServer, &Server{})
+	grpcServer := grpc.NewServer()
+	go_protos.RegisterHelloWorldServer(grpcServer, &Server{})
 	reflection.Register(grpcServer)
 	grpcServer.Serve(listen)
 }
