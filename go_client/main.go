@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"github.com/dalmarcogd/test_grpc/go_protos"
+	"github.com/dalmarcogd/test_grpc/go_client/protospb"
 	"google.golang.org/grpc"
 	"log"
 	"os"
@@ -24,7 +24,7 @@ func main() {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := go_protos.NewHelloWorldClient(conn)
+	c := protospb.NewHelloWorldClient(conn)
 
 	// Contact the server and print out its response.
 	name := defaultName
@@ -33,7 +33,7 @@ func main() {
 	}
 	ctx, cancel = context.WithTimeout(context.Background(), time.Second * 15)
 	defer cancel()
-	r, err := c.SayHello(ctx, &go_protos.HelloRequest{Name: name})
+	r, err := c.SayHello(ctx, &protospb.HelloRequest{Name: name})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}

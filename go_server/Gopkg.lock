@@ -2,14 +2,6 @@
 
 
 [[projects]]
-  branch = "master"
-  digest = "1:2ecdd1c0aaeac8c5780c61f9f9e20501cb991fb49ee13988685583e6b0b6df05"
-  name = "github.com/dalmarcogd/test_grpc"
-  packages = ["go_protos"]
-  pruneopts = "UT"
-  revision = "c478fc1b358499213eafdec2f6a8440e19ed85d8"
-
-[[projects]]
   digest = "1:7ade0e7351787347d3dd3456abb365fd71ea75c19a859505e6a427064e1f9e42"
   name = "github.com/golang/protobuf"
   packages = [
@@ -131,9 +123,11 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/dalmarcogd/test_grpc/go_protos",
+    "github.com/golang/protobuf/proto",
     "google.golang.org/grpc",
+    "google.golang.org/grpc/codes",
     "google.golang.org/grpc/reflection",
+    "google.golang.org/grpc/status",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
