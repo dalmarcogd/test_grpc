@@ -3,19 +3,20 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/dalmarcogd/test_grpc/go_protos"
+	"github.com/dalmarcogd/test_grpc/protos"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+	"log"
 	"net"
 )
 
 const (
-	grpcPort = ":50051"
+	grpcPort = ":3000"
 )
 type Server struct{}
 
-func (s *Server) SayHello(context context.Context, in *go_protos.HelloRequest) (*go_protos.HelloResponse, error) {
-	return &go_protos.HelloResponse{Message: "Hello " + in.Name}, nil
+func (s *Server) SayHello(context context.Context, in *protos.HelloRequest) (*protos.HelloResponse, error) {
+	return &protos.HelloResponse{Message: "Hello " + in.Name}, nil
 }
 
 func main() {
@@ -25,7 +26,8 @@ func main() {
 		return
 	}
 	grpcServer := grpc.NewServer()
-	go_protos.RegisterHelloWorldServer(grpcServer, &Server{})
+	protos.RegisterHelloWorldServer(grpcServer, &Server{})
 	reflection.Register(grpcServer)
+	log.Printf("Listen on: %s", listen.Addr())
 	grpcServer.Serve(listen)
 }
