@@ -10,7 +10,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: cd go_server
-      run: cd go_server
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag test_grpc:$(date +%s)
+      run: cd go_server && docker build . --file Dockerfile --tag test_grpc:$(date +%s)
